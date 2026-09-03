@@ -216,8 +216,115 @@ Dados principais:
 - Responsável
 - Tipo
 - Status
+## 10. Estoque e Materiais
 
-## 10. Prestadores
+Controle dos materiais, peças, ferramentas e itens mantidos pelo condomínio para uso operacional, manutenção e reposição.
+
+Cada estoque deverá estar vinculado a um condomínio.
+
+### Cadastro de materiais
+
+Dados principais:
+
+- ID
+- Condomínio
+- Código do material
+- Nome
+- Categoria
+- Descrição
+- Unidade de medida
+- Quantidade atual
+- Estoque mínimo
+- Estoque máximo
+- Valor unitário
+- Fornecedor
+- Localização no estoque
+- Data de cadastro
+- Status
+- Observações
+
+### Categorias
+
+- Elétrica
+- Hidráulica
+- Civil
+- Pintura
+- Segurança
+- Limpeza
+- Ferramentas
+- EPI
+- Peças de reposição
+- Jardinagem
+- Outros
+
+### Movimentações de estoque
+
+Toda entrada ou saída deverá gerar um registro de movimentação.
+
+Dados principais:
+
+- ID
+- Condomínio
+- Material
+- Tipo de movimentação
+- Quantidade
+- Data
+- Responsável
+- Motivo
+- Ordem de manutenção
+- Ocorrência
+- Fornecedor
+- Valor
+- Observações
+
+Tipos de movimentação:
+
+- Entrada por compra
+- Entrada por devolução
+- Saída para manutenção
+- Saída para utilização
+- Transferência
+- Perda
+- Descarte
+- Ajuste de inventário
+
+### Estoque mínimo
+
+O sistema deverá permitir definir uma quantidade mínima para cada material.
+
+Quando a quantidade atual atingir ou ficar abaixo do estoque mínimo, o sistema deverá gerar um alerta de estoque baixo.
+
+### Integração com Manutenção
+
+Os materiais utilizados em uma manutenção poderão ser vinculados à respectiva ordem de manutenção.
+
+Exemplo:
+
+Manutenção → Ordem de Serviço → Material utilizado → Quantidade → Baixa automática do estoque.
+
+O sistema deverá registrar:
+
+- Material utilizado
+- Quantidade utilizada
+- Data
+- Responsável
+- Ordem de manutenção
+- Custo do material
+
+### Inventário
+
+O sistema deverá permitir a realização de inventários periódicos para conferência do estoque físico e ajuste das quantidades registradas no sistema.
+
+### Alertas
+
+O sistema poderá gerar alertas para:
+
+- Estoque abaixo do mínimo
+- Material sem estoque
+- Necessidade de reposição
+- Inventário pendente
+- Materiais próximos de validade, quando aplicável
+## 11. Prestadores
 
 Cadastro de fornecedores e prestadores.
 
@@ -232,8 +339,118 @@ Dados principais:
 - Serviço prestado
 - Avaliação
 - Status
+## 12. Compras e Suprimentos
 
-## 11. Usuários
+Módulo responsável pelo controle das solicitações, cotações, compras e recebimento de materiais e serviços do condomínio.
+
+### Solicitações de compra
+
+Permitir que a administração registre solicitações de materiais ou serviços necessários para o funcionamento e manutenção do condomínio.
+
+Dados principais:
+
+- ID
+- Condomínio
+- Solicitante
+- Data da solicitação
+- Descrição
+- Categoria
+- Prioridade
+- Quantidade
+- Unidade de medida
+- Motivo
+- Manutenção relacionada
+- Ocorrência relacionada
+- Status
+- Observações
+
+### Cotações
+
+Permitir o registro e comparação de propostas de diferentes fornecedores.
+
+Dados principais:
+
+- ID
+- Solicitação de compra
+- Fornecedor
+- Data da cotação
+- Item
+- Quantidade
+- Valor unitário
+- Valor total
+- Prazo de entrega
+- Condição de pagamento
+- Validade da proposta
+- Observações
+
+### Pedido de compra
+
+Após aprovação da compra, o sistema deverá permitir a geração de um pedido de compra.
+
+Dados principais:
+
+- ID
+- Condomínio
+- Solicitação
+- Fornecedor
+- Responsável pela aprovação
+- Data do pedido
+- Itens
+- Quantidades
+- Valor total
+- Condição de pagamento
+- Previsão de entrega
+- Status
+
+### Recebimento
+
+O recebimento de materiais deverá permitir a conferência da quantidade e dos itens recebidos.
+
+Dados principais:
+
+- Pedido de compra
+- Data do recebimento
+- Responsável
+- Nota fiscal
+- Itens recebidos
+- Quantidades recebidas
+- Quantidades pendentes
+- Observações
+
+Quando o material for recebido, o sistema poderá gerar automaticamente a entrada correspondente no estoque.
+
+### Integração com Estoque
+
+Compras de materiais deverão estar integradas ao módulo de Estoque e Materiais.
+
+Fluxo:
+
+Solicitação → Cotação → Aprovação → Pedido de compra → Recebimento → Entrada no estoque
+
+### Status da compra
+
+- Solicitação
+- Em cotação
+- Aguardando aprovação
+- Aprovada
+- Pedido realizado
+- Parcialmente recebido
+- Recebido
+- Cancelado
+
+### Integração com Financeiro
+
+As compras aprovadas poderão gerar lançamentos financeiros relacionados a:
+
+- Fornecedor
+- Valor
+- Data de vencimento
+- Forma de pagamento
+- Número da nota fiscal
+- Categoria da despesa
+- Centro de custo
+- Status do pagamento
+## 13. Usuários
 
 Controle de acesso à plataforma.
 
@@ -256,7 +473,7 @@ Perfis:
 - Ocupante
 - Prestador
 
-## 12. Notificações
+## 14. Notificações
 
 Sistema de alertas automáticos.
 
@@ -269,7 +486,7 @@ Exemplos:
 - Novo comunicado
 - Evento próximo
 
-## 13. Comunicação
+## 15. Comunicação
 
 Permitir comunicação entre administração, proprietários, ocupantes e prestadores.
 
@@ -280,7 +497,7 @@ Recursos:
 - Notificações
 - Histórico de comunicação
 
-## 14. Auditoria
+## 16. Auditoria
 
 Registrar alterações importantes realizadas no sistema.
 
@@ -295,7 +512,7 @@ Dados:
 - Nova informação
 - Endereço IP
 
-## 15. Relacionamentos principais
+## 17. Relacionamentos principais
 
 Condomínio
 → possui várias unidades
@@ -330,7 +547,7 @@ Condomínio
 Usuários
 → possuem diferentes níveis de permissão
 
-## 16. Multi-tenant
+## 18. Multi-tenant
 
 Todos os dados operacionais deverão estar vinculados a um condomínio.
 
@@ -338,7 +555,7 @@ Um usuário de um condomínio não poderá acessar dados de outro condomínio se
 
 O Superadministrador poderá administrar toda a plataforma.
 
-## 17. Segurança
+## 19. Segurança
 
 O sistema deverá utilizar:
 
